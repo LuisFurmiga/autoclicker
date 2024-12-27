@@ -9,10 +9,12 @@ import win32con
 
 # Variáveis globais
 running = False
-target_window_title = "Nome da Janela"
+target_window_title = "Idle Slayer"
 interval = 0.1
 hold_time = 0.15
 between_clicks = 0.05
+
+default_box_witdh = 20
 
 def find_window(title):
     """Encontra o handle da janela pelo título."""
@@ -96,29 +98,31 @@ windows_list = list_open_windows()
 tk.Label(root, text="Título da Janela:").grid(row=0, column=0, sticky="w")
 
 # ComboBox das janelas abertas
-window_combobox = ttk.Combobox(root, values=windows_list, width=50)
+window_combobox = ttk.Combobox(root, values=windows_list, width=default_box_witdh-2)
 window_combobox.set(target_window_title)  # valor padrão
 window_combobox.grid(row=0, column=1, padx=5, pady=5)
 
 tk.Label(root, text="Intervalo (segundos):").grid(row=1, column=0, sticky="w")
-entry_interval = tk.Entry(root)
+entry_interval = tk.Entry(root, width=default_box_witdh)
 entry_interval.insert(0, str(interval))
 entry_interval.grid(row=1, column=1)
 
 tk.Label(root, text="Tempo de clique (segundos):").grid(row=2, column=0, sticky="w")
-entry_hold_time = tk.Entry(root)
+entry_hold_time = tk.Entry(root, width=default_box_witdh)
 entry_hold_time.insert(0, str(hold_time))
 entry_hold_time.grid(row=2, column=1)
 
 tk.Label(root, text="Intervalo entre os botões (segundos):").grid(row=3, column=0, sticky="w")
-entry_between_clicks = tk.Entry(root)
+entry_between_clicks = tk.Entry(root, width=default_box_witdh)
 entry_between_clicks.insert(0, str(between_clicks))
 entry_between_clicks.grid(row=3, column=1)
 
+tk.Label(root, text="Clique no botão ao lado para ").grid(row=4, column=0, sticky="w")
+
 # Botões
-tk.Button(root, text="Atualizar Configurações", command=update_variables).grid(row=4, column=1, pady=10)
-tk.Button(root, text="Iniciar (F1)", command=start_autoclicker).grid(row=5, column=0, pady=10)
-tk.Button(root, text="Parar (F2)", command=stop_autoclicker).grid(row=5, column=1, columnspan=2, pady=10)
+tk.Button(root, text="Atualizar Configurações", command=update_variables, width=default_box_witdh).grid(row=4, column=1, pady=5)
+tk.Button(root, text="Iniciar (F1)", command=start_autoclicker).grid(row=5, column=0, pady=5)
+tk.Button(root, text="Parar (F2)", command=stop_autoclicker).grid(row=5, column=1, columnspan=2, pady=5)
 
 # Atalhos de teclado dentro da janela Tkinter
 root.bind("<F1>", start_autoclicker)
