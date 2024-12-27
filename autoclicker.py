@@ -12,6 +12,7 @@ running = False
 target_window_title = "Nome da Janela"
 interval = 0.1
 hold_time = 0.15
+between_clicks = 0.05
 
 def find_window(title):
     """Encontra o handle da janela pelo título."""
@@ -28,7 +29,7 @@ def send_click_to_window(hwnd):
         win32api.PostMessage(hwnd, win32con.WM_LBUTTONUP, 0x0000)
 
         # Pequeno atraso entre os cliques
-        time.sleep(0.05)
+        time.sleep(between_clicks)
 
         # Clique direito
         win32api.PostMessage(hwnd, win32con.WM_RBUTTONDOWN, 0x0002)
@@ -61,10 +62,11 @@ def stop_autoclicker(event=None):
 
 def update_variables():
     """Atualiza as variáveis com os valores da interface."""
-    global interval, hold_time, target_window_title
+    global interval, hold_time, between_clicks, target_window_title
     try:
         interval = float(entry_interval.get())
         hold_time = float(entry_hold_time.get())
+        between_clicks = float(entry_between_clicks.get())
         target_window_title = window_combobox.get()  # Pega o texto selecionado no ComboBox
         messagebox.showinfo("Atualizado", "Configurações atualizadas com sucesso!")
     except ValueError:
@@ -108,10 +110,15 @@ entry_hold_time = tk.Entry(root)
 entry_hold_time.insert(0, str(hold_time))
 entry_hold_time.grid(row=2, column=1)
 
+tk.Label(root, text="Intervalo entre os botões (segundos):").grid(row=3, column=0, sticky="w")
+entry_between_clicks = tk.Entry(root)
+entry_between_clicks.insert(0, str(between_clicks))
+entry_between_clicks.grid(row=3, column=1)
+
 # Botões
-tk.Button(root, text="Atualizar Configurações", command=update_variables).grid(row=3, column=1, pady=10)
-tk.Button(root, text="Iniciar (F1)", command=start_autoclicker).grid(row=4, column=0, pady=10)
-tk.Button(root, text="Parar (F2)", command=stop_autoclicker).grid(row=4, column=1, columnspan=2, pady=10)
+tk.Button(root, text="Atualizar Configurações", command=update_variables).grid(row=4, column=1, pady=10)
+tk.Button(root, text="Iniciar (F1)", command=start_autoclicker).grid(row=5, column=0, pady=10)
+tk.Button(root, text="Parar (F2)", command=stop_autoclicker).grid(row=5, column=1, columnspan=2, pady=10)
 
 # Atalhos de teclado dentro da janela Tkinter
 root.bind("<F1>", start_autoclicker)
