@@ -23,7 +23,8 @@ O AutoClicker é uma ferramenta simples e eficiente projetada para automatizar c
     ```sh
     cd autoclicker
     ```
-3. Instale as dependências necessárias:
+3. Se ainda não tiver o Python instalado, consulte nosso tutorial de instalação [Python para Windows](https://github.com/LuisFurmiga/Autoclicker/blob/main/Languages/pt-br/Python_Windows.pt-br.md) e obtenha orientações detalhadas sobre como configurar o ambiente.
+4. Instale as dependências necessárias:
     ```sh
     pip install -r requirements.txt
     ```
