@@ -1,9 +1,9 @@
 # AutoClicker
 
 ## README Multilíngue
-Don't speak Portuguese? Visit: [![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/LuisFurmiga/Autoclicker/blob/main/README.us.md)
+Don't speak Portuguese? Visit: [![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/LuisFurmiga/Autoclicker/blob/main/Multi_README/README.us.md)
 
-¿No hablas portugués? Acceso: [![es](https://img.shields.io/badge/lang-es-yellow.svg)](https://github.com/LuisFurmiga/Autoclicker/blob/main/README.es.md)
+¿No hablas portugués? Acceso: [![es](https://img.shields.io/badge/lang-es-yellow.svg)](https://github.com/LuisFurmiga/Autoclicker/blob/main/Multi_README/README.es.md)
 
 ## Visão geral
 O AutoClicker é uma ferramenta simples e eficiente projetada para automatizar cliques do mouse. É útil para tarefas repetitivas que exigem cliques frequentes, economizando tempo e esforço.
