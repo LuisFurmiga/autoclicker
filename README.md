@@ -1,6 +1,6 @@
 # AutoClicker
 
-## Multilíngue README
+## README Multilíngue
 Don't speak Portuguese? Visit: [![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/LuisFurmiga/Autoclicker/blob/main/README.us.md)
 
 ¿No hablas portugués? Acceso: [![es](https://img.shields.io/badge/lang-es-yellow.svg)](https://github.com//README.es.md)
