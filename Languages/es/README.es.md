@@ -3,7 +3,7 @@
 ## README Multilingüe
 Não fala espanhol? Acesse: [![pt-br](https://img.shields.io/badge/lang-pt--br-green.svg)](https://github.com/LuisFurmiga/Autoclicker/blob/main/README.md)
 
-Don't speak Spanish? Visit: [![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/LuisFurmiga/Autoclicker/blob/main/Languages/us/README.us.md)
+Don't speak Spanish? Visit: [![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/LuisFurmiga/Autoclicker/blob/main/languages/us/README.us.md)
 
 ## Visión general
 El AutoClicker es una herramienta simple y eficiente diseñada para automatizar los clics del mouse. Es útil para tareas repetitivas que requieren clics frecuentes, ahorrando tiempo y esfuerzo.
@@ -23,7 +23,7 @@ El AutoClicker es una herramienta simple y eficiente diseñada para automatizar 
     ```sh
     cd autoclicker
     ```
-3. Si aún no tienes Python instalado, consulta nuestro tutorial de instalación [Python para Windows](https://github.com/LuisFurmiga/Autoclicker/blob/main/Languages/es/Python_Windows.es.md) y obtén instrucciones detalladas sobre cómo configurar el entorno.
+3. Si aún no tienes Python instalado, consulta nuestro tutorial de instalación [Python para Windows](https://github.com/LuisFurmiga/Autoclicker/blob/main/languages/es/python_windows.es.md) y obtén instrucciones detalladas sobre cómo configurar el entorno.
 4. Instala las dependencias necesarias:
     ```sh
     pip install -r requirements.txt
