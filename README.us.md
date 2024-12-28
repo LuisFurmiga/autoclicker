@@ -1,7 +1,7 @@
 # AutoClicker
 
 ## Multilanguage README
-Não fala inglês? Acesse: [![pt-br](https://img.shields.io/badge/lang-pt--br-green.svg)](https://github.com//README.md)
+Não fala inglês? Acesse: [![pt-br](https://img.shields.io/badge/lang-pt--br-green.svg)](https://github.com/LuisFurmiga/Autoclicker/blob/main/README.md)
 
 ¿No hablas inglés? Acceso: [![es](https://img.shields.io/badge/lang-es-yellow.svg)](https://github.com//README.es.md)
 
