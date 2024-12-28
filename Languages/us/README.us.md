@@ -23,7 +23,8 @@ The AutoClicker is a simple and efficient tool designed to automate mouse clicks
     ```sh
     cd autoclicker
     ```
-3. Install the required dependencies:
+3. If you haven't installed Python yet, check out our [Python for Windows](https://github.com/LuisFurmiga/Autoclicker/blob/main/Languages/us/Python_Windows.us.md) installation tutorial for detailed instructions on how to set up the environment.
+4. Install the required dependencies:
     ```sh
     pip install -r requirements.txt
     ```
