@@ -1,4 +1,4 @@
-# Guía de instalación de Python para Windows
+# Guía de Instalación de Python para Windows
 
 Esta guía le mostrará cómo instalar Python en un sistema Windows. Siga los pasos a continuación para configurar correctamente el entorno Python.
 
