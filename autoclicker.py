@@ -27,7 +27,20 @@ def load_translations():
     """Carrega as traduções do arquivo JSON."""
     global translations
     try:
-        with open("Languages/translations.json", "r", encoding="utf-8") as file:
+        import sys
+        import os
+
+        def resource_path(relative_path):
+            """Obter o caminho do recurso, seja no modo desenvolvimento ou empacotado."""
+            try:
+                # PyInstaller cria uma pasta temporária e armazena o caminho em _MEIPASS
+                base_path = sys._MEIPASS
+            except AttributeError:
+                base_path = os.path.abspath(".")
+            return os.path.join(base_path, relative_path)
+
+        # Caminho do JSON ajustado
+        with open(resource_path("Languages/translations.json"), "r", encoding="utf-8") as file:
             translations = json.load(file)
     except FileNotFoundError:
         messagebox.showerror("Erro", "Arquivo de tradução 'translations.json' não encontrado!")
