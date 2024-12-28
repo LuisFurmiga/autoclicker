@@ -40,7 +40,7 @@ def load_translations():
             return os.path.join(base_path, relative_path)
 
         # Caminho do JSON ajustado
-        with open(resource_path("Languages/translations.json"), "r", encoding="utf-8") as file:
+        with open(resource_path("languages/translations.json"), "r", encoding="utf-8") as file:
             translations = json.load(file)
     except FileNotFoundError:
         messagebox.showerror("Erro", "Arquivo de tradução 'translations.json' não encontrado!")
