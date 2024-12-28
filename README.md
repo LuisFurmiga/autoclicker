@@ -1,29 +1,29 @@
 # AutoClicker
 
-## Multilanguage README
+## Multilíngue README
 Don't speak Portuguese? Visit: [![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/LuisFurmiga/Autoclicker/blob/main/README.us.md)
 
 ¿No hablas portugués? Acceso: [![es](https://img.shields.io/badge/lang-es-yellow.svg)](https://github.com//README.es.md)
 
-## Overview
-The AutoClicker is a simple and efficient tool designed to automate mouse clicks. It is useful for repetitive tasks that require frequent clicking, saving time and effort.
+## Visão geral
+O AutoClicker é uma ferramenta simples e eficiente projetada para automatizar cliques do mouse. É útil para tarefas repetitivas que exigem cliques frequentes, economizando tempo e esforço.
 
-## Features
-- Customizable click intervals
-- Adjustable click locations
-- Start/stop hotkeys
-- User-friendly interface
+## Características
+- Intervalos de clique personalizáveis
+- Localizações de clique ajustáveis
+- Teclas de atalho para iniciar/parar
+- Interface amigável para o usuário
 
-## Installation
-1. Clone the repository:
+## Instalação
+1. Clone o repositório:
     ```sh
     git clone https://github.com/LuisFurmiga/autoclicker.git
     ```
-2. Navigate to the project directory:
+2. Navegue até o diretório do projeto:
     ```sh
     cd autoclicker
     ```
-3. Install the required dependencies:
+3. Instale as dependências necessárias:
     ```sh
     pip install -r requirements.txt
     ```
