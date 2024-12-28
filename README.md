@@ -12,7 +12,7 @@ The AutoClicker is a simple and efficient tool designed to automate mouse clicks
 ## Installation
 1. Clone the repository:
     ```sh
-    git clone https://github.com/yourusername/autoclicker_interface.git
+    git clone https://github.com/LuisFurmiga/autoclicker_interface.git
     ```
 2. Navigate to the project directory:
     ```sh
