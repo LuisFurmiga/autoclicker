@@ -1,4 +1,2 @@
 keyboard
-pyautogui
-pyinstaller
-tkinter
+pywin32
