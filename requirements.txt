@@ -1,6 +1,4 @@
-```
 keyboard
 pyautogui
 pyinstaller
 tkinter
-```
