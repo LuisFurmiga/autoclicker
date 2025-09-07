@@ -1,0 +1,12 @@
+{
+  "target_window_title": "Idle Slayer",
+  "interval": 0.001,
+  "hold_time": 0.02,
+  "between_clicks": 0.001,
+  "enable_left_click": true,
+  "enable_right_click": true,
+  "extra_keys": [
+    "r"
+  ],
+  "language": "pt"
+}
