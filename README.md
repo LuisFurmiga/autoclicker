@@ -49,7 +49,7 @@ autoclicker/
 │── profiles.json          # Perfis do usuário
 │── translations.json      # Traduções (pt, en, es)
 │── requirements.py        # Instala dependências automaticamente
-│── README.md              # Este documento
+└── README.md              # Este documento
 ```
 
 ---
