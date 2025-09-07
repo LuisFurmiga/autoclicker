@@ -31,6 +31,27 @@ Ideal para jogos, testes de software e qualquer tarefa repetitiva que exija inte
 - ✅ **Seleção de janela alvo**
   - Lista suspensa mostra todas as janelas abertas do sistema.
 - ✅ **Mensagens e erros traduzidos** em três idiomas (i18n).
+- ✅ **Interface reorganizada (Tkinter)**
+  - Menu de **Idioma** (Português, Inglês, Espanhol).
+  - Menu de **Perfis** (com seleção via radiobutton e opções de gerenciamento).
+  - **Abas** separando **Mouse** e **Teclado** para facilitar a configuração.
+- ✅ **Automação completa**
+  - Cliques esquerdo e direito independentes.
+  - Envio de **teclas extras**, incluindo combinações (`ctrl+c`, `ctrl+shift+tab`, etc.).
+
+---
+
+## 🧩 Parâmetros de Teclado
+Na aba **Teclado**, além de `Teclas adicionais`, é possível ajustar:
+- **Atraso da tecla (`key_delay`)**: tempo entre pressionar/soltar a tecla base.
+- **Atraso dos modificadores (`modifier_delay`)**: tempo ao pressionar/soltar `ctrl/alt/shift`.
+- **Intervalo entre combos (`extra_key_gap`)**: tempo entre envio de teclas/combos sucessivos.
+
+---
+
+## 📤 Perfis
+- Criar quantos quiser.
+- Exportar/importar perfis individuais ou todos de uma vez.
 
 ---
 

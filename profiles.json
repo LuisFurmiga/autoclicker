@@ -1,5 +1,5 @@
 {
-  "active_profile": "Default",
+  "active_profile": "Idle_Slayer",
   "profiles": {
     "Idle_Slayer": {
       "target_window_title": "Idle Slayer",
@@ -7,10 +7,13 @@
       "hold_time": 0.02,
       "between_clicks": 0.001,
       "enable_left_click": true,
-      "enable_right_click": true,
+      "enable_right_click": false,
       "extra_keys": [
-        "r"
+        "lshift"
       ],
+      "key_delay": 5.0,
+      "modifier_delay": 0.005,
+      "extra_key_gap": 0.01,
       "language": "pt"
     }
   }

@@ -22,6 +22,9 @@ class Settings:
     enable_left_click: bool = True
     enable_right_click: bool = True
     extra_keys: List[str] = field(default_factory=list)
+    key_delay: float = 0.01          # atraso entre pressionar/soltar a tecla base
+    modifier_delay: float = 0.005    # atraso ao pressionar/soltar modificadores
+    extra_key_gap: float = 0.01      # intervalo entre teclas/combos sucessivos
     language: str = "pt"
 
     def to_dict(self) -> dict:

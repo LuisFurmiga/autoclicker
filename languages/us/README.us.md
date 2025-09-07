@@ -31,6 +31,27 @@ Perfect for games, software testing, and any repetitive task requiring fast and 
 - ✅ **Target window selection**
   - Dropdown shows all currently open windows.
 - ✅ **Messages and errors translated** into three languages (i18n).
+- ✅ **Reorganized interface (Tkinter)**
+  - **Language menu** (Portuguese, English, Spanish).
+  - **Profiles menu** (with radiobutton selection and management options).
+  - **Tabs** separating **Mouse** and **Keyboard** settings for clarity.
+- ✅ **Full automation**
+  - Independent left and right clicks.
+  - Send **extra keys**, including combos (`ctrl+c`, `ctrl+shift+tab`, etc.).
+
+---
+
+## 🧩 Keyboard Parameters
+In the **Keyboard** tab, besides `Additional keys`, you can tweak:
+- **Key delay (`key_delay`)**: time between press/release of the base key.
+- **Modifier delay (`modifier_delay`)**: time when pressing/releasing `ctrl/alt/shift`.
+- **Gap between combos (`extra_key_gap`)**: time between successive keys/combos.
+
+---
+
+## 📤 Profiles
+- Create as many as you want.
+- Export/import individual profiles or all at once.
 
 ---
 

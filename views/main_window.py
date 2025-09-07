@@ -25,22 +25,33 @@ class MainWindow:
         self.profile_var = tk.StringVar(value=active_profile or "Default")
         self.profile_names = profiles_names or ["Default"]
 
-        # widgets (somente os de configuração principal)
+        # widgets principais
         self.window_combobox: ttk.Combobox | None = None
+        # Aba Mouse
         self.entry_interval: tk.Entry | None = None
         self.entry_hold_time: tk.Entry | None = None
         self.entry_between_clicks: tk.Entry | None = None
         self.var_left = tk.BooleanVar(value=self.settings.enable_left_click)
         self.var_right = tk.BooleanVar(value=self.settings.enable_right_click)
+        # Aba Teclado
         self.entry_keys: tk.Entry | None = None
+        self.entry_key_delay: tk.Entry | None = None
+        self.entry_modifier_delay: tk.Entry | None = None
+        self.entry_extra_key_gap: tk.Entry | None = None
+        # Botões e menus
         self.btn_update: tk.Button | None = None
         self.btn_start: tk.Button | None = None
         self.btn_stop: tk.Button | None = None
         self.menu_bar: tk.Menu | None = None
         self.menu_profiles: tk.Menu | None = None
+        # Notebook (abas)
+        self.notebook: ttk.Notebook | None = None
+        self.tab_mouse: tk.Frame | None = None
+        self.tab_keyboard: tk.Frame | None = None
 
     # ============== Infra ==============
     def _load_translations(self):
+        # translations.json na raiz do projeto
         path = resource_path("languages/translations.json")
         try:
             with open(path, "r", encoding="utf-8") as f:
@@ -59,44 +70,70 @@ class MainWindow:
     def init_widgets(self):
         pad = {"padx": 6, "pady": 6}
 
-        # ---- Campos principais (sem seção de perfis) ----
+        # ---- Seleção da janela alvo (fora das abas)
         tk.Label(self.root, text=self.t("target_window")).grid(row=0, column=0, sticky="w", **pad)
         self.window_combobox = ttk.Combobox(self.root, values=self._list_open_windows(), width=28)
         self.window_combobox.set(self.settings.target_window_title)
         self.window_combobox.grid(row=0, column=1, sticky="we", **pad)
 
-        tk.Label(self.root, text=self.t("interval")).grid(row=1, column=0, sticky="w", **pad)
-        self.entry_interval = tk.Entry(self.root, width=30)
+        # ---- Notebook com abas Mouse / Teclado
+        self.notebook = ttk.Notebook(self.root)
+        self.tab_mouse = tk.Frame(self.notebook)
+        self.tab_keyboard = tk.Frame(self.notebook)
+        self.notebook.add(self.tab_mouse, text=self.t("tab_mouse"))
+        self.notebook.add(self.tab_keyboard, text=self.t("tab_keyboard"))
+        self.notebook.grid(row=1, column=0, columnspan=2, sticky="nsew", **pad)
+
+        # ===== Aba: Mouse =====
+        tk.Label(self.tab_mouse, text=self.t("interval")).grid(row=0, column=0, sticky="w", **pad)
+        self.entry_interval = tk.Entry(self.tab_mouse, width=30)
         self.entry_interval.insert(0, str(self.settings.interval))
-        self.entry_interval.grid(row=1, column=1, **pad)
+        self.entry_interval.grid(row=0, column=1, **pad)
 
-        tk.Label(self.root, text=self.t("hold_time")).grid(row=2, column=0, sticky="w", **pad)
-        self.entry_hold_time = tk.Entry(self.root, width=30)
+        tk.Label(self.tab_mouse, text=self.t("hold_time")).grid(row=1, column=0, sticky="w", **pad)
+        self.entry_hold_time = tk.Entry(self.tab_mouse, width=30)
         self.entry_hold_time.insert(0, str(self.settings.hold_time))
-        self.entry_hold_time.grid(row=2, column=1, **pad)
+        self.entry_hold_time.grid(row=1, column=1, **pad)
 
-        tk.Label(self.root, text=self.t("between_clicks")).grid(row=3, column=0, sticky="w", **pad)
-        self.entry_between_clicks = tk.Entry(self.root, width=30)
+        tk.Label(self.tab_mouse, text=self.t("between_clicks")).grid(row=2, column=0, sticky="w", **pad)
+        self.entry_between_clicks = tk.Entry(self.tab_mouse, width=30)
         self.entry_between_clicks.insert(0, str(self.settings.between_clicks))
-        self.entry_between_clicks.grid(row=3, column=1, **pad)
+        self.entry_between_clicks.grid(row=2, column=1, **pad)
 
-        tk.Checkbutton(self.root, text=self.t("left_click"), variable=self.var_left).grid(row=4, column=0, sticky="w", **pad)
-        tk.Checkbutton(self.root, text=self.t("right_click"), variable=self.var_right).grid(row=4, column=1, sticky="w", **pad)
+        tk.Checkbutton(self.tab_mouse, text=self.t("left_click"), variable=self.var_left).grid(row=3, column=0, sticky="w", **pad)
+        tk.Checkbutton(self.tab_mouse, text=self.t("right_click"), variable=self.var_right).grid(row=3, column=1, sticky="w", **pad)
 
-        tk.Label(self.root, text=self.t("additional_keys")).grid(row=5, column=0, sticky="w", **pad)
-        self.entry_keys = tk.Entry(self.root, width=30)
+        # ===== Aba: Teclado =====
+        tk.Label(self.tab_keyboard, text=self.t("additional_keys")).grid(row=0, column=0, sticky="w", **pad)
+        self.entry_keys = tk.Entry(self.tab_keyboard, width=30)
         self.entry_keys.insert(0, ", ".join(self.settings.extra_keys))
-        self.entry_keys.grid(row=5, column=1, **pad)
-        tk.Label(self.root, text=self.t("keys_hint")).grid(row=6, column=0, columnspan=2, sticky="w", **pad)
+        self.entry_keys.grid(row=0, column=1, **pad)
+        tk.Label(self.tab_keyboard, text=self.t("keys_hint")).grid(row=1, column=0, columnspan=2, sticky="w", **pad)
 
+        tk.Label(self.tab_keyboard, text=self.t("key_delay")).grid(row=2, column=0, sticky="w", **pad)
+        self.entry_key_delay = tk.Entry(self.tab_keyboard, width=30)
+        self.entry_key_delay.insert(0, str(self.settings.key_delay))
+        self.entry_key_delay.grid(row=2, column=1, **pad)
+
+        tk.Label(self.tab_keyboard, text=self.t("modifier_delay")).grid(row=3, column=0, sticky="w", **pad)
+        self.entry_modifier_delay = tk.Entry(self.tab_keyboard, width=30)
+        self.entry_modifier_delay.insert(0, str(self.settings.modifier_delay))
+        self.entry_modifier_delay.grid(row=3, column=1, **pad)
+
+        tk.Label(self.tab_keyboard, text=self.t("extra_key_gap")).grid(row=4, column=0, sticky="w", **pad)
+        self.entry_extra_key_gap = tk.Entry(self.tab_keyboard, width=30)
+        self.entry_extra_key_gap.insert(0, str(self.settings.extra_key_gap))
+        self.entry_extra_key_gap.grid(row=4, column=1, **pad)
+
+        # ---- Botões (fora das abas)
         self.btn_update = tk.Button(self.root, text=self.t("update"), command=self.controller.update_settings_from_view, width=30)
-        self.btn_update.grid(row=7, column=0, **pad)
+        self.btn_update.grid(row=2, column=0, **pad)
         self.btn_start = tk.Button(self.root, text=self.t("start"), command=self.controller.start, width=30)
-        self.btn_start.grid(row=7, column=1, **pad)
+        self.btn_start.grid(row=2, column=1, **pad)
         self.btn_stop = tk.Button(self.root, text=self.t("stop"), command=self.controller.stop, width=30)
-        self.btn_stop.grid(row=8, column=0, columnspan=2, **pad)
+        self.btn_stop.grid(row=3, column=0, columnspan=2, **pad)
 
-        # ---- Menu (Idioma + Perfil) ----
+        # ---- Menu (Idioma + Perfil)
         self.menu_bar = tk.Menu(self.root)
 
         # Menu Idioma
@@ -106,7 +143,7 @@ class MainWindow:
         lang_menu.add_command(label="Português", command=lambda: self.controller.switch_language("pt"))
         self.menu_bar.add_cascade(label=self.t("menu_language"), menu=lang_menu)
 
-        # Menu Perfil (com submenu de seleção por radiobutton)
+        # Menu Perfil
         self.menu_profiles = tk.Menu(self.menu_bar, tearoff=0)
         self._rebuild_profile_menu()
         self.menu_bar.add_cascade(label=self.t("menu_profile"), menu=self.menu_profiles)
@@ -140,22 +177,8 @@ class MainWindow:
         self.menu_profiles.add_command(label=self.t("import_any"), command=self.controller.import_profiles)
 
     def update_texts(self):
-        # Atualiza rótulos principais
+        # Atualiza título e botões
         self.root.title(self.t("window_title"))
-        widgets = {
-            (0, 0): self.t("target_window"),
-            (1, 0): self.t("interval"),
-            (2, 0): self.t("hold_time"),
-            (3, 0): self.t("between_clicks"),
-            (4, 0): self.t("left_click"),
-            (4, 1): self.t("right_click"),
-            (5, 0): self.t("additional_keys"),
-            (6, 0): self.t("keys_hint"),
-        }
-        for (row, col), text in widgets.items():
-            w = self._get_label_at(row, col)
-            if isinstance(w, tk.Label):
-                w.config(text=text)
         if self.btn_update:
             self.btn_update.config(text=self.t("update"))
         if self.btn_start:
@@ -163,7 +186,12 @@ class MainWindow:
         if self.btn_stop:
             self.btn_stop.config(text=self.t("stop"))
 
-        # Atualiza labels dos menus
+        # Atualiza títulos das abas
+        if self.notebook and self.tab_mouse and self.tab_keyboard:
+            self.notebook.tab(self.tab_mouse, text=self.t("tab_mouse"))
+            self.notebook.tab(self.tab_keyboard, text=self.t("tab_keyboard"))
+
+        # Recria menus para atualizar os textos
         self.init_menu_only()
 
     def init_menu_only(self):
@@ -181,14 +209,10 @@ class MainWindow:
         self.menu_bar.add_cascade(label=self.t("menu_profile"), menu=self.menu_profiles)
         self.root.config(menu=self.menu_bar)
 
-    def _get_label_at(self, row, col):
-        for w in self.root.grid_slaves(row=row, column=col):
-            return w
-        return None
-
     def set_running(self, is_running: bool):
         state = tk.DISABLED if is_running else tk.NORMAL
-        for w in [self.window_combobox, self.entry_interval, self.entry_hold_time, self.entry_between_clicks, self.entry_keys, self.btn_update]:
+        for w in [self.window_combobox, self.entry_interval, self.entry_hold_time, self.entry_between_clicks,
+                  self.entry_keys, self.entry_key_delay, self.entry_modifier_delay, self.entry_extra_key_gap, self.btn_update]:
             if w is not None:
                 w.config(state=state)
         if self.btn_start:
@@ -201,8 +225,15 @@ class MainWindow:
         hold_time = float(self.entry_hold_time.get())
         between = float(self.entry_between_clicks.get())
         title = self.window_combobox.get()
+
+        # Teclas
         keys_raw = self.entry_keys.get() or ""
         keys = [k.strip() for k in keys_raw.split(",") if k.strip()]
+
+        key_delay = float(self.entry_key_delay.get())
+        modifier_delay = float(self.entry_modifier_delay.get())
+        extra_key_gap = float(self.entry_extra_key_gap.get())
+
         s = Settings(
             target_window_title=title,
             interval=interval,
@@ -211,6 +242,9 @@ class MainWindow:
             enable_left_click=self.var_left.get(),
             enable_right_click=self.var_right.get(),
             extra_keys=keys,
+            key_delay=key_delay,
+            modifier_delay=modifier_delay,
+            extra_key_gap=extra_key_gap,
             language=self.current_language,
         )
         return s
@@ -247,14 +281,25 @@ class MainWindow:
         self._rebuild_profile_menu()
 
     def fill_from_settings(self, s: Settings):
+        # Janela
         self.window_combobox.set(s.target_window_title)
-        self.entry_interval.delete(0, tk.END)
-        self.entry_interval.insert(0, str(s.interval))
-        self.entry_hold_time.delete(0, tk.END)
-        self.entry_hold_time.insert(0, str(s.hold_time))
-        self.entry_between_clicks.delete(0, tk.END)
-        self.entry_between_clicks.insert(0, str(s.between_clicks))
+
+        # Mouse
+        if self.entry_interval:
+            self.entry_interval.delete(0, tk.END); self.entry_interval.insert(0, str(s.interval))
+        if self.entry_hold_time:
+            self.entry_hold_time.delete(0, tk.END); self.entry_hold_time.insert(0, str(s.hold_time))
+        if self.entry_between_clicks:
+            self.entry_between_clicks.delete(0, tk.END); self.entry_between_clicks.insert(0, str(s.between_clicks))
         self.var_left.set(s.enable_left_click)
         self.var_right.set(s.enable_right_click)
-        self.entry_keys.delete(0, tk.END)
-        self.entry_keys.insert(0, ", ".join(s.extra_keys))
+
+        # Teclado
+        if self.entry_keys:
+            self.entry_keys.delete(0, tk.END); self.entry_keys.insert(0, ", ".join(s.extra_keys))
+        if self.entry_key_delay:
+            self.entry_key_delay.delete(0, tk.END); self.entry_key_delay.insert(0, str(s.key_delay))
+        if self.entry_modifier_delay:
+            self.entry_modifier_delay.delete(0, tk.END); self.entry_modifier_delay.insert(0, str(s.modifier_delay))
+        if self.entry_extra_key_gap:
+            self.entry_extra_key_gap.delete(0, tk.END); self.entry_extra_key_gap.insert(0, str(s.extra_key_gap))
